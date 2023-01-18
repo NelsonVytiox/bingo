@@ -1,0 +1,76 @@
+import random as rand
+
+bingo = False
+rep = 0
+ligne = 0
+colonne = 0
+select = 0
+bingoValid = 0
+
+nombres = [i for i in range(1,90)]
+numero = 0
+
+grille = [[0 for i in range(5)],
+[0 for i in range(5)],
+[0 for i in range(5)],
+[0 for i in range(5)], 
+[0 for i in range(5)]]
+
+for i in range(5):
+    for j in range(5):
+        if i == 0 :
+            select = rand.randint(1, 15)
+            while select == grille[0][i] or select == grille[1][i] or select == grille[2][i] or select == grille[3][i] or select == grille[4][i]:
+                select = rand.randint(1, 15)
+            grille[j][i] = select
+        elif i == 1 :
+            select = rand.randint(16, 30)
+            while select == grille[0][i] or select == grille[1][i] or select == grille[2][i] or select == grille[3][i] or select == grille[4][i]:
+                select = rand.randint(16, 30)
+            grille[j][i] = select
+        elif i == 2 :
+            select = rand.randint(31, 45)
+            while select == grille[0][i] or select == grille[1][i] or select == grille[2][i] or select == grille[3][i] or select == grille[4][i]:
+                select = rand.randint(31, 45)
+            grille[j][i] = select   
+        elif i == 3 :
+            select = rand.randint(46, 60)
+            while select == grille[0][i] or select == grille[1][i] or select == grille[2][i] or select == grille[3][i] or select == grille[4][i]:
+                select = rand.randint(46, 60)
+            grille[j][i] = select
+        else :
+            select = rand.randint(61, 75)
+            while select == grille[0][i] or select == grille[1][i] or select == grille[2][i] or select == grille[3][i] or select == grille[4][i]:
+                select = rand.randint(61, 75)
+            grille[j][i] = select
+
+while bingo == False :
+    numero = rand.randint(1, 75)
+    while nombres[numero] == 0:
+        print("ㅤ")
+        print("Oups")
+        print("ㅤ")
+        numero = rand.randint(1, 75)
+    print("Le nombre est : ", nombres[numero])
+    print("ㅤ")
+    nombres[numero] = 0
+    for i in range(5):
+        print(grille[i])
+    print("ㅤ")
+    print("Ce nombre est-il dans votre grille ?")
+    print("ㅤ")
+    rep = int(input("Oui (1)/Non (0) : "))
+    print("ㅤ")
+    if rep == 1:
+        print("Quel est sa position ?")
+        print("ㅤ")
+        ligne = int(input("Ligne ? : "))
+        print("ㅤ")
+        colonne = int(input("Colonne ? : "))
+        print("ㅤ")
+        grille[colonne-1][ligne-1] = 0
+        bingoValid = int(input("Bingo ? (Oui (1)/Non (0)): "))
+    print("ㅤ")
+    if bingoValid == 1 :
+        print("Bravo ! Vous avez eu un bingo !")
+        bingo = True
